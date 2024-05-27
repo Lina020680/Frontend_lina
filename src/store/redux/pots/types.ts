@@ -3,7 +3,7 @@ export interface Pot {
   active: boolean;
 }
 
-export interface LeafGrowState {
+export interface PotsState {
   pots: Pot[];
   isLoading: boolean;
   error: string | null;

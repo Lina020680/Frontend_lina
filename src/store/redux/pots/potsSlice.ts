@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LeafGrowState, Pot } from "./types";
+import { PotsState, Pot } from "./types";
 
-const leafGrowInitialState: LeafGrowState = {
+const potsInitialState: PotsState = {
   pots: [],
   isLoading: false,
   error: null,
@@ -9,8 +9,8 @@ const leafGrowInitialState: LeafGrowState = {
 };
 
 const potsSlice = createSlice({
-  name: 'LEAFGROW',
-  initialState: leafGrowInitialState,
+  name: 'POTS',
+  initialState: potsInitialState,
   reducers: {
     activatePot(state, action: PayloadAction<string>) {
       const pot = state.pots.find(t => t.id === action.payload);
