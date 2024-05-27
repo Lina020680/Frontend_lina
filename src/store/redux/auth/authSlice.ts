@@ -1,51 +1,71 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FormState } from "./types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { AuthState } from "./types"
 
-const initialState: FormState = {
+const initialState: AuthState = {
   values: {
-    email: '',
-    password: '',
-    username: '',
+    email: "",
+    password: "",
+    username: "",
     checkbox: false,
   },
   errors: {},
   registrationSent: false,
   registrationConfirmed: false,
-  message: ''
-};
+  message: "",
+}
 
 const authSlice = createSlice({
-  name: "FORM",
+  name: "AUTH",
   initialState,
   reducers: {
-    setFieldValue(state, action: PayloadAction<{ field: string; value: string }>) {
-      state.values[action.payload.field] = action.payload.value;
+    setStringFieldValue(
+      state,
+      action: PayloadAction<{
+        field: "email" | "password" | "username"
+        value: string
+      }>,
+    ) {
+      state.values[action.payload.field] = action.payload.value
     },
-    setFieldError(state, action: PayloadAction<{ field: string; error: string }>) {
-      state.errors[action.payload.field] = action.payload.error;
+    setBooleanFieldValue(
+      state,
+      action: PayloadAction<{ field: "checkbox"; value: boolean }>,
+    ) {
+      state.values[action.payload.field] = action.payload.value
+    },
+
+    setFieldError(
+      state,
+      action: PayloadAction<{
+        field: keyof AuthState["errors"]
+        error: string
+      }>,
+    ) {
+      state.errors[action.payload.field] = action.payload.error
     },
     setCheckboxValue(state, action: PayloadAction<boolean>) {
-      state.values.checkbox = action.payload;
+      state.values.checkbox = action.payload
     },
     sendRegistration(state) {
-      state.registrationSent = true;
+      state.registrationSent = true
     },
     confirmRegistration(state) {
-      state.registrationConfirmed = true;
+      state.registrationConfirmed = true
     },
     setMessage(state, action: PayloadAction<string>) {
-      state.message = action.payload;
+      state.message = action.payload
     },
   },
-});
+})
 
 export const {
-  setFieldValue,
+  setStringFieldValue,
+  setBooleanFieldValue,
   setFieldError,
   setCheckboxValue,
   sendRegistration,
   confirmRegistration,
-  setMessage
-} = authSlice.actions;
+  setMessage,
+} = authSlice.actions
 
-export default authSlice.reducer;
+export default authSlice.reducer
