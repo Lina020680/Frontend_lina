@@ -14,7 +14,7 @@ const initialState: FormState = {
   message: ''
 };
 
-const formSlice = createSlice({
+const authSlice = createSlice({
   name: "FORM",
   initialState,
   reducers: {
@@ -46,6 +46,6 @@ export const {
   sendRegistration,
   confirmRegistration,
   setMessage
-} = formSlice.actions;
+} = authSlice.actions;
 
-export default formSlice.reducer;
+export default authSlice.reducer;
