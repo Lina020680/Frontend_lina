@@ -8,7 +8,7 @@ const leafGrowInitialState: LeafGrowState = {
   isUserLoggedIn: false, 
 };
 
-const leafGrowSlice = createSlice({
+const potsSlice = createSlice({
   name: 'LEAFGROW',
   initialState: leafGrowInitialState,
   reducers: {
@@ -33,6 +33,6 @@ const leafGrowSlice = createSlice({
   },
 });
 
-export const { activatePot, deactivatePot, logIn, logOut } = leafGrowSlice.actions;
+export const { activatePot, deactivatePot, logIn, logOut } = potsSlice.actions;
 
-export default leafGrowSlice.reducer;
+export default potsSlice.reducer;

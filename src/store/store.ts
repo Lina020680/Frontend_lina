@@ -1,29 +1,34 @@
-import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
-import leafGrowSlice from "./redux/leafGrow/leafGrowSlice";
-import formSlice from "./redux/form/formSlice";
+import {
+  Action,
+  ThunkAction,
+  combineReducers,
+  configureStore,
+} from "@reduxjs/toolkit"
+import potsSlice from "./redux/pots/potsSlice"
+import authSlice from "./redux/auth/authSlice"
 
 const rootReducer = combineReducers({
-  form: formSlice,
-  leafGrow: leafGrowSlice,
-});
+  form: authSlice,
+  leafGrow: potsSlice,
+})
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof rootReducer>
 
 export const makeStore = (preloadedState?: Partial<RootState>) => {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState,
-  });
-  return store;
-};
+  })
+  return store
+}
 
-export const store = makeStore();
+export const store = makeStore()
 
-export type AppStore = typeof store;
-export type AppDispatch = AppStore["dispatch"];
+export type AppStore = typeof store
+export type AppDispatch = AppStore["dispatch"]
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
   ThunkReturnType,
   RootState,
   unknown,
   Action
->;
+>

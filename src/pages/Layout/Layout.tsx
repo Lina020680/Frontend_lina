@@ -59,7 +59,7 @@ function Layout({ children, isUserLoggedIn }: LayoutProps) {
             to="/mypots"
             onClick={() => handleLinkClick("/mypots")}
           >
-            My Töpfe
+          Töpfe
           </StyledNavLink>
           <button onClick={() => navigate("/loginform")}>
             Anmeldung
