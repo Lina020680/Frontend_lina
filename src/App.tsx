@@ -12,7 +12,7 @@ import LoginForm from "pages/LoginForm/LoginForm";
 import RegisterForm from "pages/RegisterForm/RegisterForm";
 
 function App() {
-  const isUserLoggedIn = useSelector((state: RootState) => state.leafGrow.isUserLoggedIn);
+  const isUserLoggedIn = useSelector((state: RootState) => state.auth.isUserLoggedIn);
   return (
     <BrowserRouter>
        <Layout isUserLoggedIn={isUserLoggedIn}>

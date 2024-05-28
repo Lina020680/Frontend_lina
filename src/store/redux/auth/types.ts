@@ -13,4 +13,6 @@ export interface AuthState {
   registrationSent: boolean
   registrationConfirmed: boolean
   message: string
+  isUserLoggedIn: boolean;
+  
 }

@@ -7,5 +7,4 @@ export interface PotsState {
   pots: Pot[];
   isLoading: boolean;
   error: string | null;
-  isUserLoggedIn: boolean;
 }

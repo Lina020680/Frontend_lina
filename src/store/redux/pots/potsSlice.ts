@@ -5,7 +5,6 @@ const potsInitialState: PotsState = {
   pots: [],
   isLoading: false,
   error: null,
-  isUserLoggedIn: false, 
 };
 
 const potsSlice = createSlice({
@@ -13,26 +12,20 @@ const potsSlice = createSlice({
   initialState: potsInitialState,
   reducers: {
     activatePot(state, action: PayloadAction<string>) {
-      const pot = state.pots.find(t => t.id === action.payload);
+      const pot = state.pots.find((t: Pot) => t.id === action.payload);
       if (pot) {
         pot.active = true;
       }
     },
     deactivatePot(state, action: PayloadAction<string>) {
-      const pot = state.pots.find(t => t.id === action.payload);
+      const pot = state.pots.find((t: Pot) => t.id === action.payload);
       if (pot) {
         pot.active = false;
       }
     },
-    logIn(state) {
-      state.isUserLoggedIn = true;
-    },
-    logOut(state) {
-      state.isUserLoggedIn = false;
-    },
   },
 });
 
-export const { activatePot, deactivatePot, logIn, logOut } = potsSlice.actions;
+export const { activatePot, deactivatePot } = potsSlice.actions;
 
 export default potsSlice.reducer;

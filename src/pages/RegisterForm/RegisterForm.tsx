@@ -5,12 +5,14 @@ import { setMessage, sendRegistration } from "store/redux/auth/authSlice"
 import Form from "components/Form/Form"
 import Input from "components/Input/Input"
 import * as Yup from "yup"
+import { useNavigate } from "react-router-dom"; 
 
 function RegisterForm() {
   const dispatch = useDispatch()
-  const formValues = useSelector((state: RootState) => state.form.values)
-  const formMessage = useSelector((state: RootState) => state.form.message)
+  const formValues = useSelector((state: RootState) => state.auth.values)
+  const formMessage = useSelector((state: RootState) => state.auth.message)
   const [resent, setResent] = useState(false)
+  const navigate = useNavigate(); 
 
   const initialValues = {
     username: "",
@@ -37,6 +39,7 @@ function RegisterForm() {
     console.log(values)
     dispatch(setMessage("Wir haben dir eine E-Mail geschickt."))
     dispatch(sendRegistration())
+    navigate("/login"); 
   }
 
   const handleResend = () => {
@@ -130,4 +133,4 @@ function RegisterForm() {
   )
 }
 
-export default RegisterForm
+export default RegisterForm;
