@@ -5,12 +5,14 @@ import { setMessage, sendRegistration } from "store/redux/auth/authSlice"
 import Form from "components/Form/Form"
 import Input from "components/Input/Input"
 import * as Yup from "yup"
+import { useNavigate } from "react-router-dom"; 
 
 function RegisterForm() {
   const dispatch = useDispatch()
-  const formValues = useSelector((state: RootState) => state.form.values)
-  const formMessage = useSelector((state: RootState) => state.form.message)
+  const formValues = useSelector((state: RootState) => state.auth.values)
+  const formMessage = useSelector((state: RootState) => state.auth.message)
   const [resent, setResent] = useState(false)
+  const navigate = useNavigate(); 
 
   const initialValues = {
     username: "",
@@ -20,23 +22,29 @@ function RegisterForm() {
   }
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Benutzername ist erforderlich"),
+    username: Yup.string()
+      .required("Benutzername ist erforderlich")
+      .min(2, "Mindestens 2 Zeichen")
+      .max(15, "Maximal 15 Zeichen")
+      .matches(/^[A-Za-z0-9]+$/, "Nur lateinische Buchstaben sind erlaubt"),
     email: Yup.string()
       .required("E-Mail-Adresse ist erforderlich")
       .email("Muss eine gültige E-Mail-Adresse sein"),
     password: Yup.string()
       .required("Passwort ist erforderlich")
       .min(8, "Mindestens 8 Zeichen")
+      .max(60, "Maximal 60 Zeichen")
       .matches(/[a-z]/, "Mindestens 1 Kleinbuchstabe")
       .matches(/[A-Z]/, "Mindestens 1 Großbuchstabe")
       .matches(/[0-9]/, "Mindestens 1 Ziffer"),
     checkbox: Yup.boolean().oneOf([true], "Checkbox muss akzeptiert werden"),
   })
-
+  
   const onSubmit = (values: any) => {
     console.log(values)
     dispatch(setMessage("Wir haben dir eine E-Mail geschickt."))
     dispatch(sendRegistration())
+    navigate("/login"); 
   }
 
   const handleResend = () => {
@@ -130,4 +138,4 @@ function RegisterForm() {
   )
 }
 
-export default RegisterForm
+export default RegisterForm;

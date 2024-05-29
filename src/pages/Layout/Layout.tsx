@@ -61,8 +61,8 @@ function Layout({ children, isUserLoggedIn }: LayoutProps) {
           >
           Töpfe
           </StyledNavLink>
-          <button onClick={() => navigate("/loginform")}>
-            Anmeldung
+          <button onClick={() => navigate("/login")}>
+            Anmelden
           </button>
         </NavContainer>
       </Header>

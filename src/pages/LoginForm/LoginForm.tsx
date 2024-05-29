@@ -1,30 +1,41 @@
-import { useNavigate } from "react-router-dom"
-import Form from "components/Form/Form"
-import Input from "components/Input/Input"
-import * as Yup from "yup"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'; 
+import { RootState } from "store/store";
+import Form from "components/Form/Form";
+import Input from "components/Input/Input";
+import * as Yup from "yup";
 
 const LoginForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const isUserLoggedIn = useSelector((state: RootState) => state.auth.isUserLoggedIn);
 
   const initialValues = {
     email: "",
     password: "",
-  }
+  };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required("E-Mail-Adresse ist erforderlich")
       .email("Muss eine gültige E-Mail-Adresse sein"),
     password: Yup.string().required("Passwort ist erforderlich"),
-  })
+  });
 
   const onSubmit = (values: any) => {
-    console.log(values)
-  }
+    console.log(values);
+  };
+
+  const handleLogin = () => {
+    if (isUserLoggedIn) {
+      navigate("/login");
+    } else {
+      navigate("/register");
+    }
+  };
 
   const goToRegister = () => {
-    navigate("/register")
-  }
+    navigate("/register");
+  };
 
   return (
     <Form
@@ -53,14 +64,14 @@ const LoginForm = () => {
             error={formik.errors.password}
             onBlur={formik.handleBlur}
           />
-          <button type="submit">Anmelden</button>
+          <button type="submit" onClick={handleLogin}>Anmelden</button>
           <button type="button" onClick={goToRegister}>
             Registrieren
           </button>
         </>
       )}
     </Form>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

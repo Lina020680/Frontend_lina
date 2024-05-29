@@ -8,8 +8,8 @@ import potsSlice from "./redux/pots/potsSlice"
 import authSlice from "./redux/auth/authSlice"
 
 const rootReducer = combineReducers({
-  form: authSlice,
-  leafGrow: potsSlice,
+  auth: authSlice,
+  pots: potsSlice,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -1,5 +1,4 @@
 import { useFormik, FormikProps } from 'formik';
-import Button from "components/Button/Button";
 import { FormComponent, InputsContainer } from "./styles";
 import { FormProps } from './types';
 
@@ -18,7 +17,6 @@ function Form({ initialValues, validationSchema, onSubmit, children }: FormProps
       <InputsContainer>
         {children(formik)}
       </InputsContainer>
-      <Button type="submit" name="Submit" />
     </FormComponent>
   );
 }
